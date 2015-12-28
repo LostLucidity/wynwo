@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'home/new'
+  get 'home/home'
 
   get 'signup' => 'admins#new'
 
