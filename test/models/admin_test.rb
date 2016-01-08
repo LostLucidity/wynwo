@@ -47,4 +47,11 @@ class AdminTest < ActiveSupport::TestCase
   		assert_not @admin.valid? "#{invalid_address.inspect} should be invalid"
   	end
   end
+
+  test "email addresses should be unique" do
+  	duplicate_admin = @admin.dup
+  	duplicate_admin.email = @admin.email.upcase
+  	@admin.save
+  	assert_not duplicate_admin.valid?
+  end
 end

@@ -3,5 +3,6 @@ class Admin < ActiveRecord::Base
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@wyncode+\.co\z/i
 	validates :email, presence: true, length: { maximum: 255 },
-										format: { with: VALID_EMAIL_REGEX }
+										format: { with: VALID_EMAIL_REGEX },
+										uniqueness: { case_sensitive: false }
 end
