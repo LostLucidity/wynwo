@@ -10,8 +10,13 @@ class AdminTest < ActiveSupport::TestCase
   	assert @admin.valid?
   end
 
-  test "should not be valid" do
+  test "name should be present" do
   	@admin.name = " " * 5
+  	assert_not @admin.valid?
+  end
+
+  test "email should be present" do
+  	@admin.email = " " * 5
   	assert_not @admin.valid?
   end
 end
