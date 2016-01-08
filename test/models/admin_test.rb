@@ -9,4 +9,9 @@ class AdminTest < ActiveSupport::TestCase
   test "should be valid" do
   	assert @admin.valid?
   end
+
+  test "should not be valid" do
+  	@admin.name = " " * 5
+  	assert_not @admin.valid?
+  end
 end
