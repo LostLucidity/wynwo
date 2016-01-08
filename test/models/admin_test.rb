@@ -15,8 +15,18 @@ class AdminTest < ActiveSupport::TestCase
   	assert_not @admin.valid?
   end
 
+  test "name should not be too long" do
+  	@admin.name = "a" * 51
+  	assert_not @admin.valid?
+  end
+
   test "email should be present" do
   	@admin.email = " " * 5
+  	assert_not @admin.valid?
+  end
+
+  test "email should not be too long" do
+  	@admin.email = "a" * 245 + "@wyncode.co"
   	assert_not @admin.valid?
   end
 end
