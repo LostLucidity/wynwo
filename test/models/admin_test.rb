@@ -3,7 +3,8 @@ require 'test_helper'
 class AdminTest < ActiveSupport::TestCase
   
   def setup
-  	@admin = Admin.new(name: "Example User", email: "admin@wyncode.co")
+  	@admin = Admin.new(name: "Example User", email: "admin@wyncode.co",
+                       password: "foobar", password_confirmation: "foobar")
   end
 
   test "should be valid" do
@@ -53,5 +54,15 @@ class AdminTest < ActiveSupport::TestCase
   	duplicate_admin.email = @admin.email.upcase
   	@admin.save
   	assert_not duplicate_admin.valid?
+  end
+
+  test "password should be present" do
+    @admin.password = @admin.password_confirmation = " " * 6
+    assert_not @admin.valid?
+  end
+
+  test "password should not be too short" do
+    @admin.password = @admin.password_confirmation = "a" * 5
+    assert_not @admin.valid?
   end
 end
