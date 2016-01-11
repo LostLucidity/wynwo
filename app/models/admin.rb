@@ -1,4 +1,6 @@
 class Admin < ActiveRecord::Base
+	before_save { self.email = email.downcase }
+
 	validates :name,  presence: true, length: { maximum: 50 }
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@wyncode+\.co\z/i
